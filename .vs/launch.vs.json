@@ -1,0 +1,13 @@
+{
+	"version": "0.2.1",
+	"defaults": {},
+	"configurations": [
+		{
+			"type": "default",
+			"project": "CMakeLists.txt",
+			"projectTarget": "Cpp-Console-Application.exe (bin\\Cpp-Console-Application.exe)",
+			"name": "Cpp-Console-Application.exe (bin\\Cpp-Console-Application.exe)",
+			"currentDir": "${workspaceRoot}"
+		}
+	]
+}
