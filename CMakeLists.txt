@@ -25,15 +25,15 @@ set(LIBRARY_INSTALL_DIRECTORY "${CMAKE_INSTALL_PREFIX}/${LIBRARY_SUBDIR}")
 set(ARCHIVE_INSTALL_DIRECTORY "${CMAKE_INSTALL_PREFIX}/${ARCHIVE_SUBDIR}")
 
 ## add source and header files to this project's executable
-add_executable(${TARGET_FILE} ${SRC_FILES} ${INC_FILES})
+add_executable("${TARGET_FILE}" ${SRC_FILES} ${INC_FILES})
 
 ## add include directories
-target_include_directories(${TARGET_FILE} PRIVATE "include")
+target_include_directories("${TARGET_FILE}" PRIVATE "include")
 
 ## add libraries
 # <lib>
 #find_package(<lib> CONFIG REQUIRED)
-#target_link_libraries(${TARGET_FILE} PRIVATE <lib>)
+#target_link_libraries("${TARGET_FILE}" PRIVATE <lib>)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 	## On Windows, vcpkg automatically copies dependent shared library files
@@ -94,8 +94,8 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 
 				## Recursively install dependencies
 				foreach(FILE ${RESOLVED_DEPS})
-					if(NOT IS_SYMLINK ${FILE})
-						install_dependencies(${FILE})
+					if(NOT IS_SYMLINK "${FILE}")
+						install_dependencies("${FILE}")
 					endif()
 				endforeach()
 
@@ -128,16 +128,16 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 	endfunction()
 
 	add_install_dependencies(
-		${RUNTIME_SUBDIR}/${TARGET_FILE}
-		${LIBRARY_INSTALL_DIRECTORY}
-		${INSTALL_SYSTEM_LIBRARIES}
+		"${RUNTIME_SUBDIR}/${TARGET_FILE}"
+		"${LIBRARY_INSTALL_DIRECTORY}"
+		"${INSTALL_SYSTEM_LIBRARIES}"
 	)
 endif()
 
 ## install exetutable, shared and static libraries
-install(TARGETS ${TARGET_FILE} RUNTIME DESTINATION ${RUNTIME_INSTALL_DIRECTORY})
-install(TARGETS ${TARGET_FILE} LIBRARY DESTINATION ${LIBRARY_INSTALL_DIRECTORY})
-install(TARGETS ${TARGET_FILE} ARCHIVE DESTINATION ${ARCHIVE_INSTALL_DIRECTORY})
+install(TARGETS "${TARGET_FILE}" RUNTIME DESTINATION "${RUNTIME_INSTALL_DIRECTORY}")
+install(TARGETS "${TARGET_FILE}" LIBRARY DESTINATION "${LIBRARY_INSTALL_DIRECTORY}")
+install(TARGETS "${TARGET_FILE}" ARCHIVE DESTINATION "${ARCHIVE_INSTALL_DIRECTORY}")
 
 ## install resources folder
 #install(DIRECTORY resources DESTINATION ${RUNTIME_INSTALL_DIRECTORY})
