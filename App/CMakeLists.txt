@@ -18,9 +18,24 @@ add_executable("${TARGET_NAME}" ${SRC_FILES} ${INC_FILES})
 target_include_directories("${TARGET_NAME}" PRIVATE "include")
 
 ## add libraries
-# <lib>
+# via vcpkg
 #find_package(<lib> CONFIG REQUIRED)
 #target_link_libraries("${TARGET_NAME}" PRIVATE <lib>)
+
+# manually
+#add_library(<lib> SHARED IMPORTED)
+#set_target_properties(<lib> PROPERTIES
+#	IMPORTED_IMPLIB <path to .lib/.a>
+#	IMPORTED_LOCATION <path to .dll/.so>
+#	INTERFACE_INCLUDE_DIRECTORIES <path to include>
+#)
+#target_link_libraries("${TARGET_FILE}" PRIVATE <lib>)
+#add_custom_command(TARGET "${TARGET_FILE}" POST_BUILD
+#	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+#	"$<TARGET_FILE:<lib>>" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
+#	VERBATIM
+#)
+#install(IMPORTED_RUNTIME_ARTIFACTS <lib> LIBRARY DESTINATION "${LIBRARY_INSTALL_DIRECTORY}")
 
 ## make assets available in the build directory via symlink
 #util_add_post_build_create_symlink("${TARGET_NAME}"
@@ -33,10 +48,8 @@ install(TARGETS "${TARGET_NAME}" RUNTIME DESTINATION "${RUNTIME_INSTALL_DIRECTOR
 install(TARGETS "${TARGET_NAME}" LIBRARY DESTINATION "${LIBRARY_INSTALL_DIRECTORY}")
 install(TARGETS "${TARGET_NAME}" ARCHIVE DESTINATION "${ARCHIVE_INSTALL_DIRECTORY}")
 
-util_install_dependencies(
-	"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${TARGET_NAME}"
-	"${LIBRARY_INSTALL_DIRECTORY}"
-	"${INSTALL_SYSTEM_LIBRARIES}"
+util_install_dependencies("${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${TARGET_NAME}"
+	"${LIBRARY_INSTALL_DIRECTORY}" "${INSTALL_SYSTEM_LIBRARIES}"
 )
 
 ## install assets
