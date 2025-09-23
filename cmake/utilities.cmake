@@ -1,6 +1,6 @@
 include_guard(GLOBAL)
 
-function(util_install_dependencies BINARY OUTPUT_DIR INCLUDE_SYSTEM_LIBRARIES)
+function(util_install_dependencies TARGET_FILE OUTPUT_DIR INCLUDE_SYSTEM_LIBRARIES)
 	if(NOT BUILD_SHARED_LIBS)
 		return()
 	endif()
@@ -15,11 +15,10 @@ function(util_install_dependencies BINARY OUTPUT_DIR INCLUDE_SYSTEM_LIBRARIES)
 	## the paths set by vcpkg are absolute, which means they are only correct for
 	## the build directory. In order to have a self contained install directory as
 	## well, we have to find and install all dependent .so files manually.
-
 	elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 		## only CMAKE_INSTALL_PREFIX is available in the generated install script, so
 		## we have to pass all other variables we want to use manually
-		install(CODE "set(BINARY \"${BINARY}\")")
+		install(CODE "set(TARGET_FILE \"${TARGET_FILE}\")")
 		install(CODE "set(OUTPUT_DIR \"${OUTPUT_DIR}\")")
 		install(CODE "set(INCLUDE_SYSTEM_LIBRARIES \"${INCLUDE_SYSTEM_LIBRARIES}\")")
 		install(CODE "set(CMAKE_BINARY_DIR \"${CMAKE_BINARY_DIR}\")")
@@ -78,7 +77,7 @@ function(util_install_dependencies BINARY OUTPUT_DIR INCLUDE_SYSTEM_LIBRARIES)
 
 			## get runtime dependencies of the main executable
 			file(GET_RUNTIME_DEPENDENCIES
-				EXECUTABLES ${BINARY}
+				EXECUTABLES ${TARGET_FILE}
 				RESOLVED_DEPENDENCIES_VAR RESOLVED_DEPS
 				UNRESOLVED_DEPENDENCIES_VAR UNRESOLVED_DEPS
 			)
@@ -96,7 +95,7 @@ function(util_install_dependencies BINARY OUTPUT_DIR INCLUDE_SYSTEM_LIBRARIES)
 	endif()
 endfunction()
 
-function(util_add_post_build_create_symlink TARGET_FILE SRC_DIR DST_DIR)
+function(util_add_post_build_create_symlink TARGET_NAME SRC_DIR DST_DIR)
 	cmake_path(GET DST_DIR PARENT_PATH DST_PARENT_DIR)
 
 	## the built-in cmake command "create_symlink" needs privileges on windows,
@@ -105,7 +104,7 @@ function(util_add_post_build_create_symlink TARGET_FILE SRC_DIR DST_DIR)
 		cmake_path(NATIVE_PATH SRC_DIR SRC_NATIVE_DIR)
 		cmake_path(NATIVE_PATH DST_DIR DST_NATIVE_DIR)
 
-		add_custom_command(TARGET "${TARGET_FILE}" POST_BUILD
+		add_custom_command(TARGET "${TARGET_NAME}" POST_BUILD
 			COMMAND ${CMAKE_COMMAND} -E make_directory "${DST_PARENT_DIR}"
 			COMMAND ${CMAKE_COMMAND} -E rm -rf "${DST_DIR}"
 			COMMAND cmd /c mklink /j "${DST_NATIVE_DIR}" "${SRC_NATIVE_DIR}"
@@ -113,7 +112,7 @@ function(util_add_post_build_create_symlink TARGET_FILE SRC_DIR DST_DIR)
 		)
 	## on linux we use the built-in create_symlink command
 	else()
-		add_custom_command(TARGET "${TARGET_FILE}" POST_BUILD
+		add_custom_command(TARGET "${TARGET_NAME}" POST_BUILD
 			COMMAND ${CMAKE_COMMAND} -E make_directory "${DST_PARENT_DIR}"
 			COMMAND ${CMAKE_COMMAND} -E rm -rf "${DST_DIR}"
 			COMMAND ${CMAKE_COMMAND} -E create_symlink "${SRC_DIR}" "${DST_DIR}"
