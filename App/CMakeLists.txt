@@ -50,7 +50,7 @@ target_include_directories("${TARGET_NAME}" PRIVATE "include")
 #	"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/resources"
 #)
 
-## install exetutable, shared and static libraries
+## install executable, shared and static libraries
 install(TARGETS "${TARGET_NAME}"
 	RUNTIME_DEPENDENCY_SET "${RUNTIME_DEP_SET_NAME}"
 	RUNTIME DESTINATION "${RUNTIME_INSTALL_DIRECTORY}"
