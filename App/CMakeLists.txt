@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 3.22)
 
 project("App Project")
 
-## target binary file
+## name of target binary, component and runtime dependency set
 set(TARGET_NAME "app")
+set(COMPONENT_NAME "${TARGET_NAME}")
+set(RUNTIME_DEP_SET_NAME "${TARGET_NAME}_runtime_deps")
 
 ## header files
 file(GLOB_RECURSE INC_FILES "include/*.h")
@@ -11,7 +13,7 @@ file(GLOB_RECURSE INC_FILES "include/*.h")
 ## source files
 file(GLOB_RECURSE SRC_FILES "src/*.cpp")
 
-## add source and header files to this project's executable
+## add source and header files to this project's target binary
 add_executable("${TARGET_NAME}" ${SRC_FILES} ${INC_FILES})
 
 ## add include directories
@@ -21,7 +23,7 @@ target_include_directories("${TARGET_NAME}" PRIVATE "include")
 # via vcpkg
 #find_package(<lib> CONFIG REQUIRED)
 #target_link_libraries("${TARGET_NAME}" PRIVATE <lib>)
-
+#
 # manually
 #add_library(<lib> SHARED IMPORTED)
 #set_target_properties(<lib> PROPERTIES
@@ -35,7 +37,12 @@ target_include_directories("${TARGET_NAME}" PRIVATE "include")
 #	"$<TARGET_FILE:<lib>>" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
 #	VERBATIM
 #)
-#install(IMPORTED_RUNTIME_ARTIFACTS <lib> LIBRARY DESTINATION "${LIBRARY_INSTALL_DIRECTORY}")
+#install(IMPORTED_RUNTIME_ARTIFACTS <lib>
+#	RUNTIME_DEPENDENCY_SET "${RUNTIME_DEP_SET_NAME}"
+#	RUNTIME DESTINATION "${RUNTIME_INSTALL_DIRECTORY}"
+#	LIBRARY DESTINATION "${LIBRARY_INSTALL_DIRECTORY}"
+#	COMPONENT "${COMPONENT_NAME}"
+#)
 
 ## make assets available in the build directory via symlink
 #util_add_post_build_create_symlink("${TARGET_NAME}"
@@ -44,12 +51,18 @@ target_include_directories("${TARGET_NAME}" PRIVATE "include")
 #)
 
 ## install exetutable, shared and static libraries
-install(TARGETS "${TARGET_NAME}" RUNTIME DESTINATION "${RUNTIME_INSTALL_DIRECTORY}")
-install(TARGETS "${TARGET_NAME}" LIBRARY DESTINATION "${LIBRARY_INSTALL_DIRECTORY}")
-install(TARGETS "${TARGET_NAME}" ARCHIVE DESTINATION "${ARCHIVE_INSTALL_DIRECTORY}")
-
-util_install_dependencies("${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${TARGET_NAME}"
-	"${LIBRARY_INSTALL_DIRECTORY}" "${INSTALL_SYSTEM_LIBRARIES}"
+install(TARGETS "${TARGET_NAME}"
+	RUNTIME_DEPENDENCY_SET "${RUNTIME_DEP_SET_NAME}"
+	RUNTIME DESTINATION "${RUNTIME_INSTALL_DIRECTORY}"
+	LIBRARY DESTINATION "${LIBRARY_INSTALL_DIRECTORY}"
+	ARCHIVE DESTINATION "${ARCHIVE_INSTALL_DIRECTORY}"
+	COMPONENT "${COMPONENT_NAME}"
+)
+install(RUNTIME_DEPENDENCY_SET "${RUNTIME_DEP_SET_NAME}"
+	DESTINATION "${LIBRARY_INSTALL_DIRECTORY}"
+	COMPONENT "${COMPONENT_NAME}"
+	PRE_EXCLUDE_REGEXES ${GLOBAL_DEP_PRE_EXCLUDE_REGEXES}
+	POST_EXCLUDE_REGEXES ${GLOBAL_DEP_POST_EXCLUDE_REGEXES}
 )
 
 ## install assets
