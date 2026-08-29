@@ -1,0 +1,243 @@
+{
+	"version": 9,
+	"include": [
+		"base-presets.json",
+		"build-presets.json",
+		"runtime-presets.json",
+		"vcpkg-target-triplets-windows.json"
+	],
+	"configurePresets": [
+		{
+			"name": "windows-msvc-base",
+			"hidden": true,
+			"inherits": [
+				"vcpkg-base"
+			],
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Windows"
+			}
+		},
+		{
+			"name": "windows-msvc-x64-base",
+			"hidden": true,
+			"inherits": [
+				"windows-msvc-base",
+				"ext-arch-x64"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/windows-msvc-x64.cmake"
+			}
+		},
+		{
+			"name": "windows-msvc-x86-base",
+			"hidden": true,
+			"inherits": [
+				"windows-msvc-base",
+				"ext-arch-x86"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/windows-msvc-x86.cmake"
+			}
+		},
+		{
+			"name": "windows-msvc-arm64-base",
+			"hidden": true,
+			"inherits": [
+				"windows-msvc-base",
+				"ext-arch-arm64"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/windows-msvc-arm64.cmake"
+			}
+		},
+		{
+			"name": "windows-msvc-arm-base",
+			"hidden": true,
+			"inherits": [
+				"windows-msvc-base",
+				"ext-arch-arm"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/windows-msvc-arm.cmake"
+			}
+		},
+		{
+			"name": "windows-msvc-x64-debug-dynamic",
+			"inherits": [
+				"windows-msvc-x64-base",
+				"build-type-debug",
+				"vcpkg-target-triplet-windows-x64-dynamic",
+				"runtime-windows-debug-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-x64-debug-static",
+			"inherits": [
+				"windows-msvc-x64-base",
+				"build-type-debug",
+				"vcpkg-target-triplet-windows-x64-static",
+				"runtime-windows-debug-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-x64-release-dynamic",
+			"inherits": [
+				"windows-msvc-x64-base",
+				"build-type-release",
+				"vcpkg-target-triplet-windows-x64-dynamic",
+				"runtime-windows-release-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-x64-release-static",
+			"inherits": [
+				"windows-msvc-x64-base",
+				"build-type-release",
+				"vcpkg-target-triplet-windows-x64-static",
+				"runtime-windows-release-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-x86-debug-dynamic",
+			"inherits": [
+				"windows-msvc-x86-base",
+				"build-type-debug",
+				"vcpkg-target-triplet-windows-x86-dynamic",
+				"runtime-windows-debug-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-x86-x86-debug-static",
+			"inherits": [
+				"windows-msvc-base",
+				"build-type-debug",
+				"vcpkg-target-triplet-windows-x86-static",
+				"runtime-windows-debug-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-x86-release-dynamic",
+			"inherits": [
+				"windows-msvc-x86-base",
+				"build-type-release",
+				"vcpkg-target-triplet-windows-x86-dynamic",
+				"runtime-windows-release-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-x86-release-static",
+			"inherits": [
+				"windows-msvc-x86-base",
+				"build-type-release",
+				"vcpkg-target-triplet-windows-x86-static",
+				"runtime-windows-release-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-arm64-debug-dynamic",
+			"inherits": [
+				"windows-msvc-arm64-base",
+				"build-type-debug",
+				"vcpkg-target-triplet-windows-arm64-dynamic",
+				"runtime-windows-debug-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-arm64-debug-static",
+			"inherits": [
+				"windows-msvc-arm64-base",
+				"build-type-debug",
+				"vcpkg-target-triplet-windows-arm64-static",
+				"runtime-windows-debug-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-arm64-release-dynamic",
+			"inherits": [
+				"windows-msvc-arm64-base",
+				"build-type-release",
+				"vcpkg-target-triplet-windows-arm64-dynamic",
+				"runtime-windows-release-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-arm64-release-static",
+			"inherits": [
+				"windows-msvc-arm64-base",
+				"build-type-release",
+				"vcpkg-target-triplet-windows-arm64-static",
+				"runtime-windows-release-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-arm-debug-dynamic",
+			"inherits": [
+				"windows-msvc-arm-base",
+				"build-type-debug",
+				"vcpkg-target-triplet-windows-arm-dynamic",
+				"runtime-windows-debug-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-arm-debug-static",
+			"inherits": [
+				"windows-msvc-arm-base",
+				"build-type-debug",
+				"vcpkg-target-triplet-windows-arm-static",
+				"runtime-windows-debug-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-arm-release-dynamic",
+			"inherits": [
+				"windows-msvc-arm-base",
+				"build-type-release",
+				"vcpkg-target-triplet-windows-arm-dynamic",
+				"runtime-windows-release-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-msvc-arm-release-static",
+			"inherits": [
+				"windows-msvc-arm-base",
+				"build-type-release",
+				"vcpkg-target-triplet-windows-arm-static",
+				"runtime-windows-release-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		}
+	]
+}

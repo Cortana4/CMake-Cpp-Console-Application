@@ -1,0 +1,230 @@
+{
+	"version": 9,
+	"include": [
+		"base-presets.json",
+		"build-presets.json",
+		"vcpkg-targets-windows.json"
+	],
+	"configurePresets": [
+		{
+			"name": "windows-clang-mingw-base",
+			"hidden": true,
+			"inherits": [
+				"vcpkg-base"
+			],
+			"condition": {
+				"type": "inList",
+				"string": "${hostSystemName}",
+				"list": [
+					"Windows",
+					"Linux"
+				]
+			}
+		},
+		{
+			"name": "windows-clang-mingw-x64-base",
+			"hidden": true,
+			"inherits": [
+				"windows-clang-mingw-base"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/windows-clang-mingw-x64.cmake"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-x86-base",
+			"hidden": true,
+			"inherits": [
+				"windows-clang-mingw-base"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/windows-clang-mingw-x86.cmake"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-arm64-base",
+			"hidden": true,
+			"inherits": [
+				"windows-clang-mingw-base"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/windows-clang-mingw-arm64.cmake"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-arm-base",
+			"hidden": true,
+			"inherits": [
+				"windows-clang-mingw-base"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/windows-clang-mingw-arm.cmake"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-x64-debug-dynamic",
+			"inherits": [
+				"windows-clang-mingw-x64-base",
+				"build-type-debug",
+				"vcpkg-target-windows-x64-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-x64-debug-static",
+			"inherits": [
+				"windows-clang-mingw-x64-base",
+				"build-type-debug",
+				"vcpkg-target-windows-x64-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-x64-release-dynamic",
+			"inherits": [
+				"windows-clang-mingw-x64-base",
+				"build-type-release",
+				"vcpkg-target-windows-x64-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-x64-release-static",
+			"inherits": [
+				"windows-clang-mingw-x64-base",
+				"build-type-release",
+				"vcpkg-target-windows-x64-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-x86-debug-dynamic",
+			"inherits": [
+				"windows-clang-mingw-x86-base",
+				"build-type-debug",
+				"vcpkg-target-windows-x86-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-x86-debug-static",
+			"inherits": [
+				"windows-clang-mingw-x86-base",
+				"build-type-debug",
+				"vcpkg-target-windows-x86-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-x86-release-dynamic",
+			"inherits": [
+				"windows-clang-mingw-x86-base",
+				"build-type-release",
+				"vcpkg-target-windows-x86-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-x86-release-static",
+			"inherits": [
+				"windows-clang-mingw-x86-base",
+				"build-type-release",
+				"vcpkg-target-windows-x86-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-arm64-debug-dynamic",
+			"inherits": [
+				"windows-clang-mingw-arm64-base",
+				"build-type-debug",
+				"vcpkg-target-windows-arm64-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-arm64-debug-static",
+			"inherits": [
+				"windows-clang-mingw-arm64-base",
+				"build-type-debug",
+				"vcpkg-target-windows-arm64-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-arm64-release-dynamic",
+			"inherits": [
+				"windows-clang-mingw-arm64-base",
+				"build-type-release",
+				"vcpkg-target-windows-arm64-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-arm64-release-static",
+			"inherits": [
+				"windows-clang-mingw-arm64-base",
+				"build-type-release",
+				"vcpkg-target-windows-arm64-static",
+				"runtime-windows-release-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-arm-debug-dynamic",
+			"inherits": [
+				"windows-clang-mingw-arm-base",
+				"build-type-debug",
+				"vcpkg-target-windows-arm-dynamic",
+				"runtime-windows-debug-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-arm-debug-static",
+			"inherits": [
+				"windows-clang-mingw-arm-base",
+				"build-type-debug",
+				"vcpkg-target-windows-arm-static",
+				"runtime-windows-debug-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-arm-release-dynamic",
+			"inherits": [
+				"windows-clang-mingw-arm-base",
+				"build-type-release",
+				"vcpkg-target-windows-arm-dynamic",
+				"runtime-windows-release-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "windows-clang-mingw-arm-release-static",
+			"inherits": [
+				"windows-clang-mingw-arm-base",
+				"build-type-release",
+				"vcpkg-target-windows-arm-static",
+				"runtime-windows-release-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		}
+	]
+}

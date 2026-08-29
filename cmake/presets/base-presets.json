@@ -1,0 +1,30 @@
+{
+	"version": 9,
+	"configurePresets": [
+		{
+			"name": "vcpkg-base",
+			"hidden": true,
+			"generator": "Ninja Multi-Config",
+			"toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+			"cacheVariables": {
+				"VCPKG_INSTALL_OPTIONS": "--clean-after-build",
+				"VCPKG_APPLOCAL_DEPS": "OFF"
+			},
+			"vendor": {
+				"microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+					"sourceDir": "$env{HOME}/.vs/$ms{projectDirName}",
+					"copySourcesOptions": {
+						"exclusionList": [
+							".git",
+							".github",
+							".vs",
+							"build",
+							"install",
+							"out"
+						]
+					}
+				}
+			}
+		}
+	]
+}

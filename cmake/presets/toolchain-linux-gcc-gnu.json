@@ -1,0 +1,246 @@
+{
+	"version": 9,
+	"include": [
+		"base-presets.json",
+		"build-presets.json",
+		"vcpkg-targets-linux.json"
+	],
+	"configurePresets": [
+		{
+			"name": "linux-gcc-gnu-base",
+			"hidden": true,
+			"inherits": [
+				"vcpkg-base"
+			],
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Linux"
+			}
+		},
+		{
+			"name": "linux-gcc-gnu-x64-base",
+			"hidden": true,
+			"inherits": [
+				"linux-gcc-gnu-base",
+				"ext-arch-x64"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/linux-gcc-gnu-x64.cmake"
+			}
+		},
+		{
+			"name": "linux-gcc-gnu-x86-base",
+			"hidden": true,
+			"inherits": [
+				"linux-gcc-gnu-base",
+				"ext-arch-x86"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/linux-gcc-gnu-x86.cmake"
+			}
+		},
+		{
+			"name": "linux-gcc-gnu-arm64-base",
+			"hidden": true,
+			"inherits": [
+				"linux-gcc-gnu-base",
+				"ext-arch-arm64"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/linux-gcc-gnu-arm64.cmake"
+			}
+		},
+		{
+			"name": "linux-gcc-gnu-arm-base",
+			"hidden": true,
+			"inherits": [
+				"linux-gcc-gnu-base",
+				"ext-arch-arm"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/linux-gcc-gnu-arm.cmake"
+			}
+		},
+		{
+			"name": "linux-gcc-gnu-riscv64-base",
+			"hidden": true,
+			"inherits": [
+				"linux-gcc-gnu-base"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/linux-gcc-gnu-riscv64.cmake"
+			}
+		},
+		{
+			"name": "linux-gcc-gnu-riscv32-base",
+			"hidden": true,
+			"inherits": [
+				"linux-gcc-gnu-base"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/linux-gcc-gnu-riscv32.cmake"
+			}
+		},
+		{
+			"name": "linux-gcc-gnu-x64-debug-dynamic",
+			"inherits": [
+				"linux-gcc-gnu-x64-base",
+				"build-type-debug",
+				"vcpkg-target-linux-x64-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-x64-debug-static",
+			"inherits": [
+				"linux-gcc-gnu-x64-base",
+				"build-type-debug",
+				"vcpkg-target-linux-x64-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-x64-release-dynamic",
+			"inherits": [
+				"linux-gcc-gnu-x64-base",
+				"build-type-release",
+				"vcpkg-target-linux-x64-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-x64-release-static",
+			"inherits": [
+				"linux-gcc-gnu-x64-base",
+				"build-type-release",
+				"vcpkg-target-linux-x64-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-x86-debug-static",
+			"inherits": [
+				"linux-gcc-gnu-x86-base",
+				"build-type-debug",
+				"vcpkg-target-linux-x86-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-x86-release-static",
+			"inherits": [
+				"linux-gcc-gnu-x86-base",
+				"build-type-release",
+				"vcpkg-target-linux-x86-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-arm64-debug-dynamic",
+			"inherits": [
+				"linux-gcc-gnu-arm64-base",
+				"build-type-debug",
+				"vcpkg-target-linux-arm64-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-arm64-debug-static",
+			"inherits": [
+				"linux-gcc-gnu-arm64-base",
+				"build-type-debug",
+				"vcpkg-target-linux-arm64-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-arm64-release-dynamic",
+			"inherits": [
+				"linux-gcc-gnu-arm64-base",
+				"build-type-release",
+				"vcpkg-target-linux-arm64-dynamic"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-arm64-release-static",
+			"inherits": [
+				"linux-gcc-gnu-arm64-base",
+				"build-type-release",
+				"vcpkg-target-linux-arm64-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-arm-debug-static",
+			"inherits": [
+				"linux-gcc-gnu-arm-base",
+				"build-type-debug",
+				"vcpkg-target-linux-arm-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-arm-release-static",
+			"inherits": [
+				"linux-gcc-gnu-arm-base",
+				"build-type-release",
+				"vcpkg-target-linux-arm-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-riscv64-debug-static",
+			"inherits": [
+				"linux-gcc-gnu-riscv64-base",
+				"build-type-debug",
+				"vcpkg-target-linux-riscv64-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-riscv64-release-static",
+			"inherits": [
+				"linux-gcc-gnu-riscv64-base",
+				"build-type-release",
+				"vcpkg-target-linux-riscv64-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-riscv32-debug-static",
+			"inherits": [
+				"linux-gcc-gnu-riscv32-base",
+				"build-type-debug",
+				"vcpkg-target-linux-riscv32-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		},
+		{
+			"name": "linux-gcc-gnu-riscv32-release-static",
+			"inherits": [
+				"linux-gcc-gnu-riscv32-base",
+				"build-type-release",
+				"vcpkg-target-linux-riscv32-static"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		}
+	]
+}
