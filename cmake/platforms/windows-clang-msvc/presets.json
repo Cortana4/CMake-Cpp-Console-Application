@@ -2,14 +2,17 @@
 	"version": 9,
 	"include": [
 		"../../presets/base-presets.json",
-		"../../presets/build-presets.json"
+		"../../presets/ext-arch-presets.json",
+		"../../presets/vendor-presets.json"
 	],
 	"configurePresets": [
 		{
 			"name": "windows-clang-msvc-base",
 			"hidden": true,
 			"inherits": [
-				"vcpkg-base"
+				"vcpkg-base",
+				"vs-remote-settings",
+				"vs-settings"
 			],
 			"cacheVariables": {
 				"VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake/platforms/windows-clang-msvc/triplets"

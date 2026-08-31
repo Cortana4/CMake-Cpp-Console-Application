@@ -2,14 +2,17 @@
 	"version": 9,
 	"include": [
 		"../../presets/base-presets.json",
-		"../../presets/build-presets.json"
+		"../../presets/ext-arch-presets.json",
+		"../../presets/vendor-presets.json"
 	],
 	"configurePresets": [
 		{
 			"name": "windows-msvc-base",
 			"hidden": true,
 			"inherits": [
-				"vcpkg-base"
+				"vcpkg-base",
+				"vs-remote-settings",
+				"vs-settings"
 			],
 			"condition": {
 				"type": "equals",
