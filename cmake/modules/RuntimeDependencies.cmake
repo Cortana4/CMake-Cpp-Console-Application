@@ -4,6 +4,8 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 		"^ext-ms-.*\\.dll$"
 		"^kernel32\\.dll$"
 		"^msvcrt\\.dll$"
+		"^ucrtbase\\.dll$"
+		"^ucrtbased\\.dll$"
 	)
 
 	set(RUNTIME_DEP_POST_EXCLUDE_REGEXES

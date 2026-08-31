@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
-project("Console Template Project" LANGUAGES C CXX ASM)
+project("Console Template Project" LANGUAGES C CXX)
 
 include(ProjectLayout)
 include(RuntimeDependencies)

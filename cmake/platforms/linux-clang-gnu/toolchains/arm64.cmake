@@ -1,0 +1,12 @@
+set(CMAKE_SYSTEM_NAME "Linux")
+set(CMAKE_SYSTEM_PROCESSOR "aarch64")
+set(CMAKE_C_COMPILER "clang")
+set(CMAKE_CXX_COMPILER "clang++")
+set(CMAKE_C_COMPILER_TARGET "aarch64-linux-gnu")
+set(CMAKE_CXX_COMPILER_TARGET "aarch64-linux-gnu")
+
+if(VCPKG_CRT_LINKAGE STREQUAL "static")
+	set(CMAKE_EXE_LINKER_FLAGS_INIT "-static")
+	set(CMAKE_SHARED_LINKER_FLAGS_INIT "-static")
+	set(CMAKE_MODULE_LINKER_FLAGS_INIT "-static")
+endif()

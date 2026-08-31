@@ -1,7 +1,8 @@
 #include <iostream>
+#include <fmt/format.h>
 
 int main(int argC, char* argV[])
 {
-	std::cout << "Hello World!" << std::endl;
+	std::cout << fmt::format("Hello from {}!\n", "fmt");
 	return 0;
 }

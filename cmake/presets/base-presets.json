@@ -8,7 +8,7 @@
 			"toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
 			"cacheVariables": {
 				"VCPKG_INSTALL_OPTIONS": "--clean-after-build",
-				"VCPKG_APPLOCAL_DEPS": "OFF"
+				"X_VCPKG_APPLOCAL_DEPS_INSTALL": "OFF"
 			},
 			"vendor": {
 				"microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {

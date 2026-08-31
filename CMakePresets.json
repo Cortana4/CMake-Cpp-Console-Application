@@ -6,13 +6,12 @@
 		"patch": 0
 	},
 	"include": [
-		"cmake/presets/toolchain-windows-msvc.json",
-		"cmake/presets/toolchain-windows-clang-mingw.json",
-		"cmake/presets/toolchain-windows-clang-msvc.json",
-		"cmake/presets/toolchain-windows-gcc-mingw.json",
-		"cmake/presets/toolchain-linux-clang-gnu.json",
-		"cmake/presets/toolchain-linux-gcc-gnu.json",
-		"cmake/presets/toolchain-generic-gcc-rv32.json"
+		"cmake/platforms/linux-clang-gnu/presets.json",
+		"cmake/platforms/linux-gcc-gnu/presets.json",
+		"cmake/platforms/windows-clang-mingw/presets.json",
+		"cmake/platforms/windows-clang-msvc/presets.json",
+		"cmake/platforms/windows-gcc-mingw/presets.json",
+		"cmake/platforms/windows-msvc/presets.json"
 	],
 	"configurePresets": [
 
