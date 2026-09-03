@@ -1,10 +1,13 @@
-set(CMAKE_SYSTEM_NAME "Windows")
+if(NOT CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+	set(CMAKE_SYSTEM_NAME "Windows")
+	set(CMAKE_GET_RUNTIME_DEPENDENCIES_PLATFORM "windows+pe")
+endif()
+
 set(CMAKE_SYSTEM_PROCESSOR "ARM")
 set(CMAKE_C_COMPILER "clang-cl")
 set(CMAKE_CXX_COMPILER "clang-cl")
 set(CMAKE_C_COMPILER_TARGET "armv7-pc-windows-msvc")
 set(CMAKE_CXX_COMPILER_TARGET "armv7-pc-windows-msvc")
-set(CMAKE_GET_RUNTIME_DEPENDENCIES_PLATFORM "windows+pe")
 
 if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
 	set(XWIN_ARCH "aarch")

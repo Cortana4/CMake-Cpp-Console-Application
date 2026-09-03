@@ -49,7 +49,7 @@ find_package(fmt CONFIG REQUIRED)
 target_link_libraries("${TARGET_NAME}" PRIVATE fmt::fmt)
 
 ## make assets available in the build directory via symlink
-#util_add_post_build_create_symlink("${TARGET_NAME}"
+#add_post_build_symlink("${TARGET_NAME}"
 #	"${CMAKE_CURRENT_SOURCE_DIR}/resources"
 #	"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/resources"
 #)

@@ -1,11 +1,3 @@
-# xwin \
-# --accept-license \
-# --arch x86,x86_64,aarch64 \
-# splat \
-# --include-debug-libs \
-# --include-debug-symbols \
-# --output /opt/xwin
-
 if(DEFINED ENV{XWIN_ROOT} AND NOT "$ENV{XWIN_ROOT}" STREQUAL "")
 	set(XWIN_ROOT "$ENV{XWIN_ROOT}")
 else()

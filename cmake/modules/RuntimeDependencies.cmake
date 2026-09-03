@@ -34,25 +34,25 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 	)
 endif()
 
-# When cross compiling, CMake does not include the toolchain directory
-# when looking for runtime dependencies. However, the toolchain itself
-# knows which directories must be included. CMake derives that information
-# via CMAKE_<LANG>_IMPLICIT_LINK_DIRECTORIES. Unfortunately, this cache
-# variable only holds the search directories for static libraries. To get
-# the shared library directories, we have to replace "/lib" with "/bin".
+## When cross compiling, CMake does not include the toolchain directory
+## when looking for runtime dependencies. However, the toolchain itself
+## knows which directories must be included. CMake derives that information
+## via CMAKE_<LANG>_IMPLICIT_LINK_DIRECTORIES. Unfortunately, this cache
+## variable only holds the search directories for static libraries. To get
+## the shared library directories, we have to replace "/lib" with "/bin".
 
-# iterate over the implicit link directories for all enabled languages
+## iterate over the implicit link directories for all enabled languages
 get_property(enabled_languages GLOBAL PROPERTY ENABLED_LANGUAGES)
 foreach(lang IN LISTS enabled_languages)
 	foreach(dir IN LISTS CMAKE_${lang}_IMPLICIT_LINK_DIRECTORIES)
-		# check if directory ends with "lib"
+		## check if directory ends with "lib"
 		cmake_path(GET dir FILENAME directory_name)
 		if(directory_name STREQUAL "lib")
-			# replace "lib" with "bin"
+			## replace "lib" with "bin"
 			cmake_path(GET dir PARENT_PATH parent_directory)
 			set(bin_dir "${parent_directory}/bin")
 
-			# only append existing directories
+			## only append existing directories
 			if(IS_DIRECTORY "${bin_dir}")
 				list(APPEND RUNTIME_DEP_DIRECTORIES "${bin_dir}")
 			endif()
